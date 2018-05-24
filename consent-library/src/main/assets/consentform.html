@@ -2,7 +2,6 @@
 <head>
   <meta name='viewport' content='initial-scale=1, viewport-fit=cover'/>
   <meta charset="utf-8"/>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
   <style type="text/css">
     html,
     body {
@@ -448,7 +447,6 @@
         margin-top: 0;
       }
     }
-  </style>
   <script type="text/javascript">
     var obj = {};
     var state = 'init';
@@ -694,17 +692,18 @@
       var providers = consentInfo['providers'] || [];
       obj.providersEl.innerHTML = '';
       var providersList = document.createElement('ul');
+      var providerListItem;
       for (var i = 0; i < providers.length; i++) {
         var provider = providers[i];
         var providerTag = document.createElement('a');
         providerTag.innerText = provider['company_name'];
         providerTag.onclick = createPolicyUrlOnClick(provider['policy_url']);
 
-        var providerListItem = document.createElement('li');
+        providerListItem = document.createElement('li');
         providerListItem.appendChild(providerTag);
         providersList.appendChild(providerListItem);
       }
-      const providerListItem = document.createElement('li');
+      providerListItem = document.createElement('li');
       const approvalCheckbox = document.createElement('input');
       approvalCheckbox.id = "ads";
       approvalCheckbox.name = "ads";
@@ -811,9 +810,11 @@
       obj.overlayEl.classList.remove('hidden');
     }, consentDelayMs);
   </script>
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 </head>
 <body>
-  <div id="overlay" class="center hidden">
+<div id="overlay" class="center hidden">
     <div id="content">
       <div id="content-box">
         <div class="app-title flex-center">
