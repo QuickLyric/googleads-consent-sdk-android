@@ -704,6 +704,18 @@
         providerListItem.appendChild(providerTag);
         providersList.appendChild(providerListItem);
       }
+      const providerListItem = document.createElement('li');
+      const approvalCheckbox = document.createElement('input');
+      approvalCheckbox.id = "ads";
+      approvalCheckbox.name = "ads";
+      approvalCheckbox.type = "checkbox";
+      approvalCheckbox.checked = true;
+      const approvalLabel = document.createElement('label');
+      approvalLabel.innerText = "Allow our partners to use your data to display targeted ads";
+      providerListItem.appendChild(approvalCheckbox);
+      providerListItem.appendChild(approvalLabel);
+      providersList.appendChild(providerListItem);
+
       obj.providersEl.appendChild(providersList);
 
       // Hide unavailable options.
@@ -838,7 +850,7 @@
                 <td><b>Allow</b></td>
                 <td><b>Service Name</b></td>
                 <td><b>Personal Data</b></td>
-                <td><b>How it helps</b></td>
+                <td><b>Purpose</b></td>
               </tr>
               <tr>
                 <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
@@ -874,10 +886,6 @@
             <p>Learn how our partners collect and use data:</p>
           </div>
           <div id="providers" class="providers">
-          </div>
-          <div class="ads_approval" class="providers">
-              <input id="ads" name="ads" value="ads" type="checkbox" checked>
-              <label for="ads">Allow our partners to use your data to display targeted ads</label>
           </div>
           <div class="how-use-data"><a href="#" onclick="showAppPrivacyPolicy(event)"><span class="app_name">App Name</span> Privacy Policy</a></div>
           <div class="footer">
