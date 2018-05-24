@@ -145,9 +145,10 @@
       text-align: left;
     }
     #buttons {
-      color: #1A73E8;
+      color: #FFF;
     }
     .button {
+      background-color: #1A73E8;
       border-radius: 8px;
       border: 1px solid #e0e0e0;
       box-sizing: border-box;
@@ -850,31 +851,31 @@
                 <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
                 <td>Firebase Crash Reporting</td>
                 <td>Instance IDs & Crash traces</td>
-                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
+                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="analytics" name="analytics" value="analytics" type="checkbox" checked></td>
                 <td>Google Analytics for Firebase</td>
-                <td><a href="https://support.google.com/adxseller/answer/6274238?hl=en" data-ytta-id="-">Mobile ad IDs</a>, <a href="https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID" data-ytta-id="-">Android IDs</a>, <a href="/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId" data-ytta-id="-">Instance IDs</a>, <a href="https://support.google.com/firebase/answer/6317486?hl=en" data-ytta-id="-">Analytics App Instance IDs</a></td>
-                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
+                <td><a href="#" onclick="createPolicyUrlOnClick('https://support.google.com/adxseller/answer/6274238?hl=en')" data-ytta-id="-">Mobile ad IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID')" data-ytta-id="-">Android IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId')" data-ytta-id="-">Instance IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://support.google.com/firebase/answer/6317486?hl=en')" data-ytta-id="-">Analytics App Instance IDs</a></td>
+                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="remote_config" name="remote_config" value="remote_config" type="checkbox" checked></td>
                 <td>Firebase Remote Config</td>
                 <td>Instance IDs</td>
-                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
+                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="performance" name="performance" value="performance" type="checkbox" checked></td>
                 <td>Firebase Performance Monitoring</td>
                 <td>Instance IDs</td>
-                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
+                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="appsee" name="appsee" value="appsee" type="checkbox" checked></td>
                 <td>Appsee</td>
                 <td>Technical information, partially-hashed IP address</td>
-                <td><p><a href="https://www.appsee.com/legal/privacypolicy">More info</a></p></td>
+                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://www.appsee.com/legal/privacypolicy')">More info</a></p></td>
               </tr>
             </table>
             <div class="providers">
