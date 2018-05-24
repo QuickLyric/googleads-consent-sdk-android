@@ -613,6 +613,14 @@
       }
     }
 
+    // Returns an onclick handler that opens a URL in a browser.
+    function createPolicyUrlOnClick(url) {
+      return function() {
+        openBrowser(url);
+        return false;  // Return false to prevent default click logic.
+      };
+    };
+
     function setUpConsentDialog(argsDictionary) {
       argsDictionary = argsDictionary || {};
       var args = argsDictionary['args'];
@@ -673,14 +681,6 @@
         appIconEl.className = 'app_icon';
         obj.titleAppNameEl.parentNode.insertBefore(appIconEl, obj.titleAppNameEl);
       }
-
-      // Returns an onclick handler that opens a URL in a browser.
-      function createPolicyUrlOnClick(url) {
-        return function() {
-          openBrowser(url);
-          return false;  // Return false to prevent default click logic.
-        };
-      };
 
       // Create the app's privacy policy URL handler.
       var app_privacy_url = formInfo['app_privacy_url'];
@@ -851,31 +851,31 @@
                 <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
                 <td>Firebase Crash Reporting</td>
                 <td>Instance IDs & Crash traces</td>
-                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
+                <td><p><a href="#" onclick="openBrowser('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="analytics" name="analytics" value="analytics" type="checkbox" checked></td>
                 <td>Google Analytics for Firebase</td>
-                <td><a href="#" onclick="createPolicyUrlOnClick('https://support.google.com/adxseller/answer/6274238?hl=en')" data-ytta-id="-">Mobile ad IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID')" data-ytta-id="-">Android IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId')" data-ytta-id="-">Instance IDs</a>, <a href="#" onclick="createPolicyUrlOnClick('https://support.google.com/firebase/answer/6317486?hl=en')" data-ytta-id="-">Analytics App Instance IDs</a></td>
-                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
+                <td><a href="#" onclick="openBrowser('https://support.google.com/adxseller/answer/6274238?hl=en')" data-ytta-id="-">Mobile ad IDs</a>, <a href="#" onclick="openBrowser('https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID')" data-ytta-id="-">Android IDs</a>, <a href="#" onclick="openBrowser('https://firebase.google.com/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId')" data-ytta-id="-">Instance IDs</a>, <a href="#" onclick="openBrowser('https://support.google.com/firebase/answer/6317486?hl=en')" data-ytta-id="-">Analytics App Instance IDs</a></td>
+                <td><p><a href="#" onclick="openBrowser('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="remote_config" name="remote_config" value="remote_config" type="checkbox" checked></td>
                 <td>Firebase Remote Config</td>
                 <td>Instance IDs</td>
-                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
+                <td><p><a href="#" onclick="openBrowser('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="performance" name="performance" value="performance" type="checkbox" checked></td>
                 <td>Firebase Performance Monitoring</td>
                 <td>Instance IDs</td>
-                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://firebase.google.com/support/privacy/')">More info</a></p></td>
+                <td><p><a href="#" onclick="openBrowser('https://firebase.google.com/support/privacy/')">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="appsee" name="appsee" value="appsee" type="checkbox" checked></td>
                 <td>Appsee</td>
                 <td>Technical information, partially-hashed IP address</td>
-                <td><p><a href="#" onclick="createPolicyUrlOnClick('https://www.appsee.com/legal/privacypolicy')">More info</a></p></td>
+                <td><p><a href="#" onclick="openBrowser('https://www.appsee.com/legal/privacypolicy')">More info</a></p></td>
               </tr>
             </table>
             <div class="providers">
