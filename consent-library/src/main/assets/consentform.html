@@ -185,7 +185,7 @@
     .providers {
       color: rgba(0, 0, 0, .71);
       font-family: 'Roboto', Arial, sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       padding: 0 8px;
       text-align: center;
       min-height: 36px;
@@ -828,7 +828,7 @@
             <div class="head_detail">
               <span id="change_anytime_text1">You can change your choice anytime for <span class="app_name">App Name</span> in the app settings.</span>
               <span id="head_detail_text">Our partners will collect data and use a unique identifier on your device to show you ads.<br/>
-                <a href="#" onclick="showProviders();">Choose how <span class="app_name">App Name</span> & our partners collect and use your data</a>
+                <a href="#" onclick="showProviders();">Manage how <span class="app_name">App Name</span> & our partners collect and use your data</a>
               </span>
             </div>
           </div>
@@ -881,11 +881,14 @@
               <tr>
                 <td><input id="appsee" name="appsee" value="appsee" type="checkbox" checked></td>
                 <td>Appsee</td>
-                <td>Technical information and aggregated usage data, partially-hashed IP address, <span class="app_name">App Name</span> screen captures</td>
+                <td>Technical information, partially-hashed IP address</td>
                 <td><p><a href="https://www.appsee.com/legal/privacypolicy">More info</a></p></td>
               </tr>
             </table>
-            <p>Learn how our partners collect and use data:</p>
+            <p id="providers" class="providers">
+            <input id="ads" name="ads" value="ads" type="checkbox" checked>
+            <label for="ads">Allow these partners to use your data to display targeted ads: </label>
+          </p>
           </div>
           <div id="providers" class="providers">
           </div>
