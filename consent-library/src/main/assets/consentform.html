@@ -98,7 +98,6 @@
       max-width: 600px;
       margin: 0 auto;
       overflow: hidden;
-      padding: 20px;
       position: relative;
       text-align: center;
       -webkit-transition: height 0.3s ease-in-out;
@@ -837,7 +836,7 @@
                 <td><b>Allow</b></td>
                 <td><b>Service Name</b></td>
                 <td><b>Personal Data</b></td>
-                <td>How it helps</td>
+                <td><b>How it helps</b></td>
               </tr>
               <tr>
                 <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
@@ -872,10 +871,12 @@
             </table>
           </div>
           <div id="providers" class="providers">
-            <input id="ads" name="ads" value="ads" type="checkbox" checked>
-            <label for="ads">Allow our partners to use your data to display targeted ads</label>
           </div>
-          <div class="how-use-data"><a href="#" onclick="showAppPrivacyPolicy(event)">How <span class="app_name">App Name</span> uses your data</a></div>
+          <div class="ads_approval">
+              <input id="ads" name="ads" value="ads" type="checkbox" checked>
+              <label for="ads">Allow our partners to use your data to display targeted ads</label>
+          </div>
+          <div class="how-use-data"><a href="#" onclick="showAppPrivacyPolicy(event)"><span class="app_name">App Name</span> Privacy Policy</a></div>
           <div class="footer">
             <div class="actions">
               <div class="back btn" onclick="actionClick(event, 'back0')">Back</div>
