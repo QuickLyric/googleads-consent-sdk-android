@@ -582,15 +582,6 @@
       return false;
     }
 
-    function openBrowser2(url) {
-      var info = {
-        'action': 'browser',
-        'url': url || ''
-      }
-      sendMessage(info);
-      return true;
-    }
-
     function sendMessage(info) {
       function queryStringFromDictionary(d) {
         var params = [];
@@ -857,7 +848,7 @@
                 <td><b>Purpose</b></td>
               </tr>
               <tr>
-                <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
+                <td><input id="crashlytics" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
                 <td>Firebase Crash Reporting</td>
                 <td>Instance IDs & Crash traces</td>
                 <td><p><a href="#" onclick="openBrowser('https://firebase.google.com/support/privacy/')">More info</a></p></td>

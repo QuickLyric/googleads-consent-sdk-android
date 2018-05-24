@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -34,7 +35,9 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 import com.google.gson.Gson;
+
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.util.HashMap;
@@ -77,7 +80,8 @@ public class ConsentForm {
         this.loadState = LoadState.NOT_READY;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true);
+            if (0 != (context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE))
+                WebView.setWebContentsDebuggingEnabled(true);
         }
 
         this.webView = new WebView(context);
