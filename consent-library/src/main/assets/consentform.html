@@ -582,6 +582,15 @@
       return false;
     }
 
+    function openBrowser2(url) {
+      var info = {
+        'action': 'browser',
+        'url': url || ''
+      }
+      sendMessage(info);
+      return true;
+    }
+
     function sendMessage(info) {
       function queryStringFromDictionary(d) {
         var params = [];

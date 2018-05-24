@@ -76,6 +76,10 @@ public class ConsentForm {
         this.dialog = new Dialog(context);
         this.loadState = LoadState.NOT_READY;
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
         this.webView = new WebView(context);
         this.dialog.setContentView(webView);
         this.dialog.setCancelable(false);
