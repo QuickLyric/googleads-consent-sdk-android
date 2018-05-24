@@ -81,82 +81,91 @@ public class ConsentForm {
         this.dialog.setCancelable(false);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(
-            new WebViewClient() {
+                new WebViewClient() {
 
-                boolean isInternalRedirect;
+                    boolean isInternalRedirect;
 
-                private boolean isConsentFormUrl(String url) {
-                    return !TextUtils.isEmpty(url) && url.startsWith("consent://");
-                }
-
-                private void handleUrl(String url) {
-                    if (!isConsentFormUrl(url)) {
-                        return;
+                    private boolean isConsentFormUrl(String url) {
+                        return !TextUtils.isEmpty(url) && url.startsWith("consent://");
                     }
 
-                    isInternalRedirect = true;
-                    Uri uri = Uri.parse(url);
-                    String action = uri.getQueryParameter("action");
-                    String status = uri.getQueryParameter("status");
-                    String browserUrl = uri.getQueryParameter("url");
+                    private void handleUrl(String url) {
+                        if (!isConsentFormUrl(url)) {
+                            return;
+                        }
 
-                    switch (action) {
-                        case "load_complete":
-                            handleLoadComplete(status);
-                            break;
-                        case "dismiss":
-                            isInternalRedirect = false;
-                            handleDismiss(status);
-                            break;
-                        case "browser":
-                            handleOpenBrowser(browserUrl);
-                            break;
-                        default: // fall out
+                        isInternalRedirect = true;
+                        Uri uri = Uri.parse(url);
+                        String action = uri.getQueryParameter("action");
+                        String status = uri.getQueryParameter("status");
+                        String browserUrl = uri.getQueryParameter("url");
+
+                        switch (action) {
+                            case "load_complete":
+                                handleLoadComplete(status);
+                                break;
+                            case "dismiss":
+                                isInternalRedirect = false;
+
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("ads", uri.getQueryParameter("ads"));
+                                hashMap.put("crashlytics", uri.getQueryParameter("crashlytics"));
+                                hashMap.put("remoteConfig", uri.getQueryParameter("remote_config"));
+                                hashMap.put("performance", uri.getQueryParameter("performance"));
+                                hashMap.put("analytics", uri.getQueryParameter("analytics"));
+                                hashMap.put("appsee", uri.getQueryParameter("appsee"));
+
+                                handleDismiss(status, hashMap);
+                                break;
+                            case "browser":
+                                handleOpenBrowser(browserUrl);
+                                break;
+                            default: // fall out
+                        }
                     }
-                }
 
-                @Override
-                public void onLoadResource (WebView view, String url) {
-                    handleUrl(url);
-                }
-
-                @TargetApi(Build.VERSION_CODES.N)
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                    String url = request.getUrl().toString();
-                    if (isConsentFormUrl(url)) {
+                    @Override
+                    public void onLoadResource (WebView view, String url) {
                         handleUrl(url);
-                        return true;
                     }
-                    return false;
-                }
 
-                @SuppressWarnings("deprecation")
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (isConsentFormUrl(url)) {
-                        handleUrl(url);
-                        return true;
+                    @TargetApi(Build.VERSION_CODES.N)
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                        String url = request.getUrl().toString();
+                        if (isConsentFormUrl(url)) {
+                            handleUrl(url);
+                            return true;
+                        }
+                        return false;
                     }
-                    return false;
-                }
 
-                @Override
-                public void onPageFinished(WebView view, String url) {
-                    if (!isInternalRedirect) {
-                        updateDialogContent(view);
+                    @SuppressWarnings("deprecation")
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        if (isConsentFormUrl(url)) {
+                            handleUrl(url);
+                            return true;
+                        }
+                        return false;
                     }
-                    super.onPageFinished(view, url);
-                }
 
-                @Override
-                public void onReceivedError(
-                    WebView view, WebResourceRequest request, WebResourceError error) {
-                    super.onReceivedError(view, request, error);
-                    loadState = LoadState.NOT_READY;
-                    listener.onConsentFormError(error.toString());
-                }
-            });
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        if (!isInternalRedirect) {
+                            updateDialogContent(view);
+                        }
+                        super.onPageFinished(view, url);
+                    }
+
+                    @Override
+                    public void onReceivedError(
+                            WebView view, WebResourceRequest request, WebResourceError error) {
+                        super.onReceivedError(view, request, error);
+                        loadState = LoadState.NOT_READY;
+                        listener.onConsentFormError(error.toString());
+                    }
+                });
     }
 
     /**
@@ -180,7 +189,7 @@ public class ConsentForm {
 
             if (this.appPrivacyPolicyURL == null) {
                 throw new IllegalArgumentException("Must provide valid app privacy policy url"
-                    + " to create a ConsentForm");
+                        + " to create a ConsentForm");
             }
         }
 
@@ -215,9 +224,9 @@ public class ConsentForm {
 
     private static String getAppIconURIString(Context context) {
         Drawable iconDrawable = context.getPackageManager().getApplicationIcon(context
-            .getApplicationInfo());
+                .getApplicationInfo());
         Bitmap bitmap = Bitmap.createBitmap(iconDrawable.getIntrinsicWidth(),
-            iconDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                iconDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bitmap);
         iconDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         iconDrawable.draw(canvas);
@@ -243,13 +252,13 @@ public class ConsentForm {
         formInfo.put("offer_non_personalized", this.nonPersonalizedAdsOption);
         formInfo.put("offer_ad_free", this.adFreeOption);
         formInfo.put("is_request_in_eea_or_unknown",
-            ConsentInformation.getInstance(context).isRequestLocationInEeaOrUnknown());
+                ConsentInformation.getInstance(context).isRequestLocationInEeaOrUnknown());
         formInfo.put("app_privacy_url", this.appPrivacyPolicyURL);
         formInfo.put("consent_info", ConsentInformation.getInstance(context).loadConsentData());
 
         String argumentsJSON = new Gson().toJson(formInfo);
         String javascriptCommand = createJavascriptCommand("setUpConsentDialog",
-            argumentsJSON);
+                argumentsJSON);
         webView.loadUrl(javascriptCommand);
     }
 
@@ -291,7 +300,7 @@ public class ConsentForm {
         context.startActivity(browserIntent);
     }
 
-    private void handleDismiss(String status) {
+    private void handleDismiss(String status, HashMap<String, String> hashMap) {
         this.loadState = LoadState.NOT_READY;
         dialog.dismiss();
 
@@ -323,7 +332,7 @@ public class ConsentForm {
         }
 
         ConsentInformation.getInstance(context).setConsentStatus(consentStatus);
-        listener.onConsentFormClosed(consentStatus, userPrefersAdFree);
+        listener.onConsentFormClosed(consentStatus, userPrefersAdFree, hashMap);
     }
 
     public void show() {
@@ -338,7 +347,7 @@ public class ConsentForm {
         }
 
         this.dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT);
+                ViewGroup.LayoutParams.MATCH_PARENT);
         this.dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         this.dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
