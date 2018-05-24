@@ -809,17 +809,17 @@
         <div id="options">
           <div id="title_head">
             <div class="head_intro">We care about your privacy and data security. We keep this app free by showing ads.</div>
-            <div id="head_question">Can we continue to use your anonymous data to improve the app and to tailor ads for you?</div>
+            <div id="head_question">Can we use your anonymous data to improve <span class="app_name">App Name</span> and to tailor ads for you?</div>
             <div class="head_detail">
               <span id="change_anytime_text1">You can change your choice anytime for <span class="app_name">App Name</span> in the app settings.</span>
-              <span id="head_detail_text">Our partners will collect data and use a unique identifier on your device to show you ads.
-                <a href="#" onclick="showProviders();">Manage how <span class="app_name">App Name</span> and our partners collect and use your data</a>
+              <span id="head_detail_text">Our partners will collect data and use a unique identifier on your device to show you ads.<br/>
+                <a href="#" onclick="showProviders();">Choose how <span class="app_name">App Name</span> & our partners collect and use your data</a>
               </span>
             </div>
           </div>
           <div id="buttons" data-sel="">
             <div id="btn0" class="button btn0 flex-center" onclick="actionClick(event, 'agree0');">
-              <div class="button_title">OK</div>
+              <div class="button_title">Yes</div>
             </div>
             <div id="btn1" class="button btn1 flex-center" onclick="showUniqueIdInfo();">
               <div id="btn1_title" class="button_title">No, see ads that are less relevant</div>
@@ -837,37 +837,37 @@
                 <td><b>Allow</b></td>
                 <td><b>Service Name</b></td>
                 <td><b>Personal Data</b></td>
-                <td> </td>
+                <td>How it helps</td>
               </tr>
               <tr>
                 <td><input id="crash_reporting" name="crashlytics" value="crashlytics" type="checkbox" checked></td>
                 <td>Firebase Crash Reporting</td>
                 <td>Instance IDs & Crash traces</td>
-                <td><p><strong>How it helps:</strong> Crash Reporting uses crash stack traces to associate crashes with a project, send email alerts to project members and display them in the Firebase Console, and help Firebase customers debug crashes. It uses Instance IDs to measure number of users impacted by a crash.</p><p><strong>Retention:</strong> Crash Reporting retains crash stack traces for 180 days. Firebase retains Instance IDs until the Firebase customer makes an API call to delete the ID. After the call, data is removed from live and backup systems within 180 days.</p></td>
+                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="analytics" name="analytics" value="analytics" type="checkbox" checked></td>
                 <td>Google Analytics for Firebase</td>
                 <td><a href="https://support.google.com/adxseller/answer/6274238?hl=en" data-ytta-id="-">Mobile ad IDs</a>, <a href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor" data-ytta-id="-">IDFVs</a>/<a href="https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID" data-ytta-id="-">Android IDs</a>, <a href="/docs/reference/android/com/google/firebase/iid/FirebaseInstanceId" data-ytta-id="-">Instance IDs</a>, <a href="https://support.google.com/firebase/answer/6317486?hl=en" data-ytta-id="-">Analytics App Instance IDs</a></td>
-                <td class="google-visualization-table-td"><p><strong>How it helps:</strong> Google Analytics uses the data to provide analytics and attribution information. The precise information collected can vary by the device and environment. For more information see <a href="https://support.google.com/firebase/answer/6318039" data-ytta-id="-">Data collection</a>.</p><p><strong>Retention:</strong> Google Analytics retains ID-associated data for 60 days, and retains aggregate reporting and campaign data without automatic expiration, unless the Firebase customer changes their retention preference in their Analytics settings or deletes their project.</p></td>
+                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="remote_config" name="remote_config" value="remote_config" type="checkbox" checked></td>
                 <td>Firebase Remote Config</td>
                 <td>Instance IDs</td>
-                <td><p><strong>How it helps:</strong> Remote Config uses Instance IDs to select configuration values to return to end-user devices.</p><p><strong>Retention:</strong> Firebase retains Instance IDs until the Firebase customer makes an API call to delete the ID. After the call, data is removed from live and backup systems within 180 days.</p></td>
+                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="performance" name="performance" value="performance" type="checkbox" checked></td>
                 <td>Firebase Performance Monitoring</td>
                 <td>Instance IDs</td>
-                <td><p><strong>How it helps:</strong> Performance Monitoring uses Instance IDs to calculate the number of unique app instances that access network resources, to ensure that access patterns are sufficiently anonymous.</p><p><strong>Retention:</strong> Performance Monitoring keeps instance-associated events for 30 days. Firebase retains Instance IDs until the Firebase customer makes an API call to delete the ID. After the call, data is removed from live and backup systems within 180 days.</p></td>
+                <td><p><a href="https://firebase.google.com/support/privacy/">More info</a></p></td>
               </tr>
               <tr>
                 <td><input id="appsee" name="appsee" value="appsee" type="checkbox" checked></td>
                 <td>Appsee</td>
                 <td>Technical information and aggregated usage data, partially-hashed IP address, screen captures of <span class="app_name">App Name</span></td>
-                <td><p><strong>Will use End User Data only for the following purposes:</strong></p><p>1) To store and process End User Data for the preparation and delivery of our Services, including compiled analytics reports.</p><p>2)for use on an anonymous basis, in the aggregate, to perform “application uses” analysis and statistical reports, including to operate and improve our Services.</p></td>
+                <td><p><a href="https://www.appsee.com/legal/privacypolicy">More info</a></p></td>
               </tr>
             </table>
           </div>
