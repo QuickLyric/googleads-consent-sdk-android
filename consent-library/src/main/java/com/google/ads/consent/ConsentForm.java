@@ -360,7 +360,7 @@ public class ConsentForm {
         this.dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                listener.onConsentFormOpened();
+                listener.onConsentFormOpened(webView);
             }
         });
 

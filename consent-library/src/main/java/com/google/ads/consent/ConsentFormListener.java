@@ -15,6 +15,8 @@
  */
 package com.google.ads.consent;
 
+import android.webkit.WebView;
+
 import java.util.HashMap;
 
 /**
@@ -24,6 +26,6 @@ import java.util.HashMap;
 public abstract class ConsentFormListener {
     public void onConsentFormLoaded() {}
     public void onConsentFormError(String reason) {}
-    public void onConsentFormOpened() {}
+    public void onConsentFormOpened(WebView webView) {}
     public void onConsentFormClosed(ConsentStatus consentStatus, Boolean userPrefersAdFree, HashMap<String, String> hashMap) {}
 }
