@@ -65,6 +65,7 @@ public class ConsentInformation {
     private List<String> testDevices;
     private String hashedDeviceId;
     private DebugGeography debugGeography;
+    private ArrayList<AdProvider> additionalProviders;
 
     private ConsentInformation(Context context) {
         this.context = context.getApplicationContext();
@@ -433,7 +434,18 @@ public class ConsentInformation {
 
     public synchronized List<AdProvider> getAdProviders() {
         ConsentData consentData = this.loadConsentData();
-        return new ArrayList<>(consentData.getAdProviders());
+        ArrayList<AdProvider> output =  new ArrayList<>(consentData.getAdProviders());
+        if (this.additionalProviders != null) {
+            output.addAll(this.additionalProviders);
+        }
+        return output;
+    }
+
+    public synchronized void addProvider(AdProvider adProvider) {
+        if (this.additionalProviders == null)
+            this.additionalProviders = new ArrayList<>();
+        if (adProvider != null && adProvider.getName() != null && adProvider.getPrivacyPolicyUrl() != null)
+            this.additionalProviders.add(adProvider);
     }
 
     protected ConsentData loadConsentData() {
