@@ -408,6 +408,9 @@ public class ConsentInformation {
             newAdProviderSet = new HashSet<>(response.companies);
         }
 
+        if (this.additionalProviders != null)
+            newAdProviderSet.addAll(this.additionalProviders);
+
         ConsentData consentData = this.loadConsentData();
 
         boolean hasNonPersonalizedPublisherIdChanged =
