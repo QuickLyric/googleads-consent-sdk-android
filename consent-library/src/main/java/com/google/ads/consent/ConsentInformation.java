@@ -434,11 +434,7 @@ public class ConsentInformation {
 
     public synchronized List<AdProvider> getAdProviders() {
         ConsentData consentData = this.loadConsentData();
-        ArrayList<AdProvider> output =  new ArrayList<>(consentData.getAdProviders());
-        if (this.additionalProviders != null) {
-            output.addAll(this.additionalProviders);
-        }
-        return output;
+        return new ArrayList<>(consentData.getAdProviders());
     }
 
     public synchronized void addProvider(AdProvider adProvider) {
@@ -446,6 +442,17 @@ public class ConsentInformation {
             this.additionalProviders = new ArrayList<>();
         if (adProvider != null && adProvider.getName() != null && adProvider.getPrivacyPolicyUrl() != null)
             this.additionalProviders.add(adProvider);
+    }
+
+    public synchronized void refreshProviders() {
+        ConsentData consentData = this.loadConsentData();
+        HashSet<AdProvider> providers = new HashSet<>(consentData.getAdProviders());
+        if (this.additionalProviders != null && this.additionalProviders.size() > 0 &&
+                !providers.contains(this.additionalProviders.get(0))) {
+            providers.addAll(this.additionalProviders);
+        }
+        consentData.setAdProviders(providers);
+        saveConsentData(consentData);
     }
 
     protected ConsentData loadConsentData() {
